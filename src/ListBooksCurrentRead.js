@@ -5,7 +5,8 @@ class ListBooksCurrentRead extends Component {
         return(
             <div className="bookshelf">
             <h2 className="bookshelf-title">Currently Reading</h2>
-            { this.props.books.map(
+            { this.props.books.filter(book=> {return book.status === 'Currently Reading'} )
+                .map(
                 (book)=> 
                 ( 
                 <div className="bookshelf-books">
