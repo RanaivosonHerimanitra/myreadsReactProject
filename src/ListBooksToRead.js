@@ -5,16 +5,19 @@ class ListBooksToRead extends Component {
         return(
             <div className="bookshelf">
             <h2 className="bookshelf-title">Want to Read</h2>
-            { this.props.books.filter(book=> {return book.status === 'Want to Read'} )
+            <div className="bookshelf-books">
+                    <ol className="books-grid">
+                    {console.log(this.props)}   
+            { this.props.books
+            .filter(book=> {return book.shelf === 'wantToRead'} )
             .map(
                 (book)=> 
                 ( 
-                <div className="bookshelf-books">
-                    <ol className="books-grid">
+               
                         <li key={book.title}>
                             <div className="book">
                                 <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.img})` }}>  
+                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>  
                                     </div>
                                        <div className="book-shelf-changer">
                                          <select>
@@ -27,14 +30,15 @@ class ListBooksToRead extends Component {
                                        </div>
                                 </div>
                                       <div className="book-title">{book.title}</div>
-                                      <div className="book-authors">{book.author}</div>
+                                      <div className="book-authors">{book.authors[0]}</div>
                             </div>
                         </li>  
-                    </ol>
-                </div>
+                  
                 )
              )
             }
+            </ol>
+                </div>
 
         </div>)
     }

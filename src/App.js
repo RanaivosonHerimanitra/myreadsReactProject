@@ -4,6 +4,7 @@ import './App.css'
 import ListBooksToRead from './ListBooksToRead'
 import ListBooksRead from './ListBooksRead'
 import ListBooksCurrentRead from './ListBooksCurrentRead'
+import * as BooksAPI from './BooksAPI'
 const books =[
   {
     title:'To Kill a Mockingbird',
@@ -51,6 +52,7 @@ const books =[
 class BooksApp extends React.Component {
  
   state = {
+    books: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -59,7 +61,15 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
-
+  /** Life cycle event to load data on render*/
+  componentDidMount() {
+    BooksAPI.getAll().then( (books)=>{
+      this.setState ({books:books})
+    })
+  }
+  /** filter Books based on their status */
+  filterBooks = (cond) => {( this.state.books.filter(book =>book.shelf === cond) )}
+  
   render() {
     return (
       <div className="app">
@@ -91,9 +101,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-              <ListBooksCurrentRead books ={books}/>
-              <ListBooksToRead books ={books}/>
-              <ListBooksRead books ={books}/>
+              <ListBooksCurrentRead  books ={this.state.books}/>
+              <ListBooksToRead  books ={this.state.books}/>
+              <ListBooksRead  books ={this.state.books}/>
                 
               </div>
             </div>
