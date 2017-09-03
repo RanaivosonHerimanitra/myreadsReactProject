@@ -41,12 +41,12 @@ class BooksApp extends React.Component {
       return e.id === bookId;
      });
     //update book with new shelf value (at index 0 because It's just 1 object)
-    console.log(cond)
+    
     const updatedBook =update(bookArray, {0:{shelf: {$set: cond} }}  ) 
-    console.log(updatedBook.map((x)=>x.shelf))
+   
     //then merge:
     const newData =  update(restbook, {$push: updatedBook});
-    console.log(newData)
+    
     this.setState({
        books:newData
     })

@@ -23,13 +23,14 @@ class ListBooksCurrentRead extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>  
                                     </div>
                                        <div className="book-shelf-changer">
-                                         <select name="shelfname" id="shelfstat" >
-                                           <option value="none" disabled>Move to...</option>
-                                           <option value="currentlyReading" >Currently Reading</option>
-                                           <option value="wantToRead">Want to Read</option>
-                                           <option value="read">Read</option>
-                                           <option value="none">None</option>
-                                         </select>
+                                       <select id="shelfstat" >
+                                       <option  value="none" disabled>Move to...</option>
+                                       <option onClick={()=>this.props.onChangeShelf(`${book.id}`,"wantToRead")} 
+                                           value="wantToRead">Want to Read</option>
+                                       <option onClick={()=>this.props.onChangeShelf(`${book.id}`,"currentlyReading")} value="currentlyReading">Currently Reading</option>
+                                       <option onClick={()=>this.props.onChangeShelf(`${book.id}`,"read")} value="Read">Read</option>
+                                       <option value="none">None</option>
+                                     </select>
                                        </div>
                                 </div>
                                       <div className="book-title">{book.title}</div>
