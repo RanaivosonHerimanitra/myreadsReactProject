@@ -7,9 +7,9 @@ class ListBooksToRead extends Component {
             <h2 className="bookshelf-title">Want to Read</h2>
             <div className="bookshelf-books">
                     <ol className="books-grid">
-                    {console.log(this.props)}   
+                    
             { this.props.books
-            .filter(book=> {return book.shelf === 'wantToRead'} )
+            .filter(book=> {return book.shelf === this.props.status} )
             .map(
                 (book)=> 
                 ( 
@@ -20,7 +20,10 @@ class ListBooksToRead extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>  
                                     </div>
                                        <div className="book-shelf-changer">
-                                         <select>
+                                         <select id="shelfstat" 
+                                                // onClick={()=>console.log(document.getElementById("shelfstat").value)}
+                                                 onChange={()=>this.props.onChangeShelf(`${book.id}`,
+                                                          document.getElementById("shelfstat").value)}>
                                            <option value="none" disabled>Move to...</option>
                                            <option value="currentlyReading">Currently Reading</option>
                                            <option value="wantToRead">Want to Read</option>

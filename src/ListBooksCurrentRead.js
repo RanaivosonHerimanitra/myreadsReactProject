@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class ListBooksCurrentRead extends Component {
   
- 
+    
     render() {
     
         return(
@@ -12,7 +12,7 @@ class ListBooksCurrentRead extends Component {
                     <ol className="books-grid">
                     
             { this.props.books
-                .filter(book=> {return book.shelf === 'currentlyReading'} )
+                .filter(book=> {return book.shelf === this.props.status} )
                 .map(
                 (book)=> 
                 ( 
@@ -23,9 +23,9 @@ class ListBooksCurrentRead extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>  
                                     </div>
                                        <div className="book-shelf-changer">
-                                         <select>
+                                         <select name="shelfname" id="shelfstat" >
                                            <option value="none" disabled>Move to...</option>
-                                           <option value="currentlyReading">Currently Reading</option>
+                                           <option value="currentlyReading" >Currently Reading</option>
                                            <option value="wantToRead">Want to Read</option>
                                            <option value="read">Read</option>
                                            <option value="none">None</option>
