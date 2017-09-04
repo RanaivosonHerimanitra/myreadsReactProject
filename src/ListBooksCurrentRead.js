@@ -16,7 +16,6 @@ class ListBooksCurrentRead extends Component {
                 .map(
                 (book)=> 
                 ( 
-                
                         <li key={book.title}>
                             <div className="book">
                                 <div className="book-top">
