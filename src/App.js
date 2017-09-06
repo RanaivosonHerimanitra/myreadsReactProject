@@ -4,9 +4,8 @@ import './App.css'
 import update from 'react-addons-update';
 import sortBy from 'sort-by';
 import escapeRegExp from 'escape-string-regexp'
-import ListBooksToRead from './ListBooksToRead'
-import ListBooksRead from './ListBooksRead'
-import ListBooksCurrentRead from './ListBooksCurrentRead'
+import ListBooks from './ListBooks'
+
 import * as BooksAPI from './BooksAPI'
 import ListBooksFound from './ListBooksFound'
 class BooksApp extends React.Component {
@@ -119,9 +118,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-              <ListBooksRead onChangeShelf={this.addTo} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
-              <ListBooksRead onChangeShelf={this.addTo} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
-              <ListBooksRead onChangeShelf={this.addTo} statusLabel="Read" status="read" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addTo} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addTo} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addTo} statusLabel="Read" status="read" books ={this.state.books}/>
                 
               </div>
             </div>
