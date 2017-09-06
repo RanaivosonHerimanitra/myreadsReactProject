@@ -8,9 +8,7 @@ class ListBooksFound extends Component {
           <h2 className="bookshelf-title"></h2>
             <div className="bookshelf-books">
             <ol className="books-grid">
-
-            {  this.props.booksFound
-              
+            {  this.props.booksFound  
               .map(
                 (book)=> 
                 ( 

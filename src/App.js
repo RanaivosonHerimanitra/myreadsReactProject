@@ -3,13 +3,15 @@ import React from 'react'
 import './App.css'
 import update from 'react-addons-update';
 //import sortBy from 'sort-by';
-import escapeRegExp from 'escape-string-regexp'
+//import escapeRegExp from 'escape-string-regexp'
 import ListBooksRead from './ListBooksRead'
 import ListBooksCurrentRead from './ListBooksCurrentRead'
 import ListBooksToRead from './ListBooksToRead'
-
+import {Route,Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooksFound from './ListBooksFound'
+
 class BooksApp extends React.Component {
  
   state = {
@@ -76,7 +78,7 @@ class BooksApp extends React.Component {
     
     if (this.state.query)
       {
-        const match = new RegExp(escapeRegExp(this.state.query),'i')
+       // const match = new RegExp(escapeRegExp(this.state.query),'i')
         BooksAPI.search(this.state.query,10)
         .then(searchResults => {   
            //searchResults.filter((books)=>match.test(books.title) || match.test(books.authors[0])) 
@@ -90,11 +92,12 @@ class BooksApp extends React.Component {
     return (
       
       <div className="app">
-        {this.state.showSearchPage ? (
+        <Route path="/create" render= {()=> (
           <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => 
-                this.setState({ showSearchPage: false })}>Close</a>
+              {/*<a className="close-search" onClick={() => 
+                this.setState({ showSearchPage: false })}>Close</a> **/}
+                <Link className="close-search" to="/">Close></Link>
               <div className="search-books-input-wrapper">
                 
                 <input type="text" 
@@ -112,8 +115,14 @@ class BooksApp extends React.Component {
             </div>
            
           </div>
+        )} 
+        />
+        {/* {this.state.showSearchPage ? 
+        **/}
+          
         
-        ) : (
+      {/*  ) : ( **/}
+        <Route exact path="/" render= {()=> (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -127,10 +136,11 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> **/}
+              <Link to="/create">Add a book></Link>
             </div>
-          </div>
-        )}
+          </div>) } />
+      {/*  )} **/}
       </div>
     )
   }
