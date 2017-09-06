@@ -13,4 +13,4 @@ I decided to use 03 different `components` even I should use only one to render 
 
  They share the same state but filtered for each component custom attribut called `status`:
 
-![](./filter.jpg)
+![](./filter.png)
