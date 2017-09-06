@@ -1,5 +1,5 @@
 # myreadsReactProject
-A react project that demonstrates fundamental principles of react (component, props, states, router)
+A react project that demonstrates fundamental building blocks of react ecosystem (component, props, states, router).
 
 `$ npm start` for dependencies installation
 
@@ -21,6 +21,7 @@ I decided to use 03 different `components` even I should use only one to render 
 
 ![](./filter.png)
 
-A new component is also created to handle list of books found by search keywords of the API. It is basically the same as `ListBooks**` except a modified function to create shelf status because they don't have one (on click options).
+A new component is also created to handle list of books found by search keywords of the API Udacity provides us. It has basically the same strcuture as `ListBooks**` components except a modified function to create shelf status because they don't have one (on click options).
 
+![](./shelfcreate.png)
 
