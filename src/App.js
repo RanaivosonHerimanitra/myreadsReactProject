@@ -49,6 +49,20 @@ class BooksApp extends React.Component {
     })
   }
   /**adding a book to a specific shelf */
+  addBook = (book, shelf) => {   
+    //update the book in question 
+    BooksAPI.update(book, shelf);
+    console.log(book)
+    book[0]["shelf"] = shelf;
+    //remaining books
+    let books = this.state.books.filter(books => books.id !== book.id) ; 
+    //add updated book to remaining books  
+    books.push(book)  ;
+    //update state:
+    this.setState({ books: books }) 
+  }
+ 
+
   addTo = (bookId,cond)=> {
     //store init state within var
     const data = this.state.books;
@@ -129,9 +143,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-              <ListBooksCurrentRead onChangeShelf={this.addTo} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
-              <ListBooksToRead onChangeShelf={this.addTo} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
-              <ListBooksRead onChangeShelf={this.addTo} statusLabel="Read" status="read" books ={this.state.books}/>
+              <ListBooksCurrentRead onChangeShelf={this.addBook} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
+              <ListBooksToRead onChangeShelf={this.addBook} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
+              <ListBooksRead onChangeShelf={this.addBook} statusLabel="Read" status="read" books ={this.state.books}/>
                 
               </div>
             </div>

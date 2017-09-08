@@ -31,6 +31,7 @@ export const update = (book, shelf) =>
     },
     body: JSON.stringify({ shelf })
   }).then(res => res.json())
+  
 /* to search a book using API? **/
 export const search = (query, maxResults) =>
   fetch(`${api}/search`, {
