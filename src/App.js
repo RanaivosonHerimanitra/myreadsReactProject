@@ -46,8 +46,8 @@ class BooksApp extends React.Component {
        books:books
     })
   }
-  /**adding a book to a specific shelf */
-  addBook = (book, shelf) => {   
+  
+  /**addBook = (book, shelf) => {   
     //update the book in question 
     BooksAPI.update(book, shelf);
    // console.log(book)
@@ -58,8 +58,19 @@ class BooksApp extends React.Component {
     books.push(book)  ;
     //update state:
     this.setState({ books: books }) 
+  }*/
+  /**adding a book to a specific shelf */
+  addBook = (book, shelf) => {   
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        book[0].shelf = shelf
+        console.log(book)
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([ book ])
+        }))
+      })
+    }
   }
- 
 
    updateQuery = (query)=> {
      this.setState({query:query.trim()})
