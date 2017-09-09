@@ -20,10 +20,10 @@ class ListBooksFound extends Component {
                                        <div className="book-shelf-changer">
                                          <select id="shelfstat" >
                                            <option  value="none" disabled>Move to...</option>
-                                           <option onClick={()=>this.props.onChangeAddShelf(`${book.id}`,"wantToRead")}
+                                           <option onClick={()=>this.props.onChangeAddShelf(this.props.booksFound.filter(b=> {return b.id ===`${book.id}` } ),"wantToRead")}
                                                value="wantToRead">Want to Read</option>
-                                           <option onClick={()=>this.props.onChangeAddShelf(`${book.id}`,"currentlyReading")} value="currentlyReading">Currently Reading</option>
-                                           <option onClick={()=>this.props.onChangeAddShelf(`${book.id}`,"read")} value="Read">Read</option>
+                                           <option onClick={()=>this.props.onChangeAddShelf(this.props.booksFound.filter(b=> {return b.id ===`${book.id}` } ),"currentlyReading")} value="currentlyReading">Currently Reading</option>
+                                           <option onClick={()=>this.props.onChangeAddShelf(this.props.booksFound.filter(b=> {return b.id ===`${book.id}` } ),"read")} value="Read">Read</option>
                                            <option value="none">None</option>
                                          </select>
                                        </div>

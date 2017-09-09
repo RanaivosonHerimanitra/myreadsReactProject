@@ -32,27 +32,25 @@ class BooksApp extends React.Component {
       this.setState ({books:books})
     })
   }
-  /** create a shelf for a specific book */
-  createShelf = (bookId,cond)=> {
-     //store init state within var
-     const data = this.state.showingBooks;
-     //book corresponding to the supplied id
-     var bookArray = data.filter((bookList)=>bookList.id===bookId); 
-     bookArray[0]["shelf"]=cond
-     
-    
-    //then merge with current list:
-    const newData =  update(this.state.books, {$push: bookArray});
-    
+  /** create a shelf for a fetched book */
+  createShelf = (book,shelf)=> {
+     //update the book in question 
+     BooksAPI.update(book, shelf);
+     book[0]["shelf"]=shelf
+     //remaining books
+     let books = this.state.books.filter(x => x.id !== book.id) ; 
+    //add updated book to remaining books 
+    books.push(book[0])  ;
+    //update the state:
     this.setState({
-       books:newData
+       books:books
     })
   }
   /**adding a book to a specific shelf */
   addBook = (book, shelf) => {   
     //update the book in question 
     BooksAPI.update(book, shelf);
-    console.log(book)
+   // console.log(book)
     book[0]["shelf"] = shelf;
     //remaining books
     let books = this.state.books.filter(books => books.id !== book.id) ; 
