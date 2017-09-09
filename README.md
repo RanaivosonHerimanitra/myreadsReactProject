@@ -21,7 +21,7 @@ I decided to use 03 different `components` even I should use only one to render 
 
 ![](./filter.png)
 
-A new component is also created to handle list of books found by search keywords of the API Udacity provides us. It has basically the same strcuture as `ListBooks**` components except a modified function to create shelf status because they don't have one (on click options).
+A new component is also created to handle list of books found by search keywords of the API Udacity provides us. It has basically the same structure as `ListBooks**` components except a modified function to create shelf status because they don't have one (on click options).
 
 ![](./shelfcreate.png)
 
