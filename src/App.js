@@ -61,28 +61,6 @@ class BooksApp extends React.Component {
   }
  
 
-  addTo = (bookId,cond)=> {
-    //store init state within var
-    const data = this.state.books;
-    //book corresponding to the supplied id
-    const bookArray = data.filter((bookList)=>bookList.id===bookId); 
-    //remaining books
-    const restbook = data.filter((bookList)=>bookList.id!==bookId); 
-    //get index corresponding to supplied id:
-    //const bookIndex = data.findIndex(function(e) {
-     // return e.id === bookId;
-     //});
-    //update book with new shelf value (at index 0 because It's just 1 object)
-    
-    const updatedBook =update(bookArray, {0:{shelf: {$set: cond} }}  ) 
-   
-    //then merge:
-    const newData =  update(restbook, {$push: updatedBook});
-    
-    this.setState({
-       books:newData
-    })
-   }
    updateQuery = (query)=> {
      this.setState({query:query.trim()})
    }
@@ -90,11 +68,9 @@ class BooksApp extends React.Component {
     
     if (this.state.query)
       {
-       // const match = new RegExp(escapeRegExp(this.state.query),'i')
+       
         BooksAPI.search(this.state.query,10)
         .then(searchResults => {   
-           //searchResults.filter((books)=>match.test(books.title) || match.test(books.authors[0])) 
-           //console.log(searchResults)
           this.setState({
             showingBooks:searchResults
           })

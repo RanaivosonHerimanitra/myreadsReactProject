@@ -1,9 +1,13 @@
 # myreadsReactProject
 A react project that demonstrates fundamental building blocks of react ecosystem (component, props, states, router).
 
-`$ npm start` for dependencies installation
+## Dependencies intallation
 
-`$ yarn start` to run server
+`$ npm install`
+
+## Start playing with the App:
+
+`$ yarn start` 
 
 Environment: Firefox latest (don't work on chrome, I don't know why...)
 
