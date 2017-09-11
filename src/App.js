@@ -78,11 +78,10 @@ class BooksApp extends React.Component {
     return (
       
       <div className="app">
-        <Route path="/create" render= {()=> (
+        <Route path="/search" render= {()=> (
           <div className="search-books">
             <div className="search-books-bar">
-              {/*<a className="close-search" onClick={() => 
-                this.setState({ showSearchPage: false })}>Close</a> **/}
+             
                 <Link className="close-search" to="/">Close></Link>
               <div className="search-books-input-wrapper">
                 
@@ -103,11 +102,7 @@ class BooksApp extends React.Component {
           </div>
         )} 
         />
-        {/* {this.state.showSearchPage ? 
-        **/}
-          
-        
-      {/*  ) : ( **/}
+       
         <Route exact path="/" render= {()=> (
           <div className="list-books">
             <div className="list-books-title">
@@ -122,11 +117,11 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> **/}
-              <Link to="/create">Add a book></Link>
+              
+              <Link to="/search">Add a book></Link>
             </div>
           </div>) } />
-      {/*  )} **/}
+      
       </div>
     )
   }
