@@ -1,7 +1,7 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
-import update from 'react-addons-update';
+
 //import sortBy from 'sort-by';
 //import escapeRegExp from 'escape-string-regexp'
 import ListBooks from './ListBooks'

@@ -3,7 +3,7 @@ A react project that demonstrates fundamental building blocks of react ecosystem
 
 ## Dependencies intallation
 
-`$ npm install`
+`$ npm install -g react-router-dom`
 
 ## Start playing with the App:
 
