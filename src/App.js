@@ -4,9 +4,8 @@ import './App.css'
 import update from 'react-addons-update';
 //import sortBy from 'sort-by';
 //import escapeRegExp from 'escape-string-regexp'
-import ListBooksRead from './ListBooksRead'
-import ListBooksCurrentRead from './ListBooksCurrentRead'
-import ListBooksToRead from './ListBooksToRead'
+import ListBooks from './ListBooks'
+
 import {Route,Link} from 'react-router-dom'
 //import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
@@ -34,37 +33,25 @@ class BooksApp extends React.Component {
   }
   /** create a shelf for a fetched book */
   createShelf = (book,shelf)=> {
-     //update the book in question 
-     BooksAPI.update(book, shelf);
-     book[0]["shelf"]=shelf
-     //remaining books
-     let books = this.state.books.filter(x => x.id !== book.id) ; 
-    //add updated book to remaining books 
-    books.push(book[0])  ;
-    //update the state:
-    this.setState({
-       books:books
-    })
-  }
-  
-  /**addBook = (book, shelf) => {   
     //update the book in question 
-    BooksAPI.update(book, shelf);
-   // console.log(book)
-    book[0]["shelf"] = shelf;
-    //remaining books
-    let books = this.state.books.filter(books => books.id !== book.id) ; 
-    //add updated book to remaining books  
-    books.push(book)  ;
-    //update state:
-    this.setState({ books: books }) 
-  }*/
+    BooksAPI.update(book, shelf).then(() => {
+      book[0]["shelf"]=shelf
+      //remaining books
+      let books = this.state.books.filter(x => x.id !== book.id) ; 
+     //add updated book to remaining books 
+     books.push(book[0])  ;
+     //update the state:
+     this.setState({
+        books:books
+     })
+    })
+    
+}
   /**adding a book to a specific shelf */
   addBook = (book, shelf) => {   
     if (book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
         book[0].shelf = shelf
-        console.log(book)
         this.setState(state => ({
           books: state.books.filter(b => b.id !== book.id).concat([ book ])
         }))
@@ -128,9 +115,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-              <ListBooksCurrentRead onChangeShelf={this.addBook} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
-              <ListBooksToRead onChangeShelf={this.addBook} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
-              <ListBooksRead onChangeShelf={this.addBook} statusLabel="Read" status="read" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addBook} statusLabel="Currently Reading" status="currentlyReading" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addBook} statusLabel="Want to read" status="wantToRead" books ={this.state.books}/>
+              <ListBooks onChangeShelf={this.addBook} statusLabel="Read" status="read" books ={this.state.books}/>
                 
               </div>
             </div>
