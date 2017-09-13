@@ -27,9 +27,7 @@ class BooksApp extends React.Component {
   }
   /** Life cycle event to load data on render*/
   componentDidMount() {
-    BooksAPI.getAll().then( (books)=>{
-      this.setState ({books:books})
-    })
+    BooksAPI.getAll().then(books => this.setState({books}));
   }
   /** create a shelf for a fetched book */
   createShelf = (book,shelf)=> {
