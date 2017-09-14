@@ -20,3 +20,6 @@ A new component is also created to handle list of books found by search keywords
 
 ![](./shelfcreate.png)
 
+On the UI side, It looks like this:
+
+![](./shelfcreateUI.png)

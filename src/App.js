@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
   createShelf = (book,shelf)=> {
     //update the book in question 
     BooksAPI.update(book, shelf).then(() => {
-      book[0]["shelf"]=shelf
+      book.shelf=shelf
       //remaining books
       let books = this.state.books.filter(x => x.id !== book.id) ; 
      //add updated book to remaining books 
@@ -45,11 +45,12 @@ class BooksApp extends React.Component {
     })
     
 }
+ 
   /**adding a book to a specific shelf */
   addBook = (book, shelf) => {   
     if (book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
-        book[0].shelf = shelf
+        book.shelf = shelf
         this.setState(state => ({
           books: state.books.filter(b => b.id !== book.id).concat([ book ])
         }))
@@ -58,7 +59,7 @@ class BooksApp extends React.Component {
   }
 
    updateQuery = (query)=> {
-     this.setState({query:query.trim()})
+     this.setState({query:query})
    }
   render() {
     
@@ -93,7 +94,7 @@ class BooksApp extends React.Component {
             <div className="search-books-results">
               <div className="books-grid">
              
-                   <ListBooksFound onChangeAddShelf={this.createShelf} books={this.state.books} booksFound ={this.state.showingBooks}/> 
+                   <ListBooksFound onChangeAddShelf={this.addBook} books={this.state.books} booksFound ={this.state.showingBooks}/> 
               </div>
             </div>
            
