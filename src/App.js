@@ -60,7 +60,7 @@ class BooksApp extends React.Component {
         //callback of setState
          ()=> BooksAPI.search(this.state.query,10)
                  .then( searchResults => { 
-                        searchResults.map( (book)=>book.shelf="None");
+                        searchResults.map( (book)=>book.shelf="none");
                          //console.log(searchResults)
                          this.setState({showingBooks:searchResults})
                  
