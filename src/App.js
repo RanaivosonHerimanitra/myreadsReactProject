@@ -1,13 +1,7 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
-
-//import sortBy from 'sort-by';
-//import escapeRegExp from 'escape-string-regexp'
 import ListBooks from './ListBooks'
-
 import {Route,Link} from 'react-router-dom'
-//import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooksFound from './ListBooksFound'
 
@@ -54,28 +48,33 @@ class BooksApp extends React.Component {
 
   
    /* search for a book **/
-   searchBook = (query)=> {
+   searchBook = (query)=> 
+   {
      //update query state whenever It exists
      if (query) {
-      this.setState({
-        query:query
-      },
-      //then begins search after update of query state
-      BooksAPI.search(this.state.query,10)
-      .then(searchResults => { 
-        console.log(searchResults),  
-        this.setState({
-          showingBooks:searchResults
-        })
-      })
-    )
+      this.setState ( 
+        {
+           query:query
+        },
+        //then begins search after update of query state
+        //callback of setState
+         ()=> BooksAPI.search(this.state.query,10)
+                 .then( searchResults => { 
+                        searchResults.map( (book)=>book.shelf="None");
+                         //console.log(searchResults)
+                         this.setState({showingBooks:searchResults})
+                 
+                         
+                      } )
+                      
+                     
+                     
+
+     )
+     
       
-     }
-    //this.state.query=query
-    if (this.state.query)
-    {
-      
-    } 
+    }
+    
    }
   render() {
     
@@ -93,7 +92,7 @@ class BooksApp extends React.Component {
                 
                 <input type="text" 
                        value={this.state.query} 
-                       //onChange={(event)=>this.updateQuery(event.target.value)}
+                      
                        onChange={(event)=>this.searchBook(event.target.value)}
                        placeholder="Search by title or author"/>
                        
