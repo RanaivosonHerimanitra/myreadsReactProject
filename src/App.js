@@ -17,12 +17,6 @@ class BooksApp extends React.Component {
     books: [],
     query:'',
     showingBooks:[],
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     showSearchPage: false
   }
   /** Life cycle event to load data on render*/
@@ -61,18 +55,23 @@ class BooksApp extends React.Component {
    updateQuery = (query)=> {
      this.setState({query:query})
    }
+   /* search a book **/
+   searchBook = (query)=> {
+    this.state.query=query
+    if (this.state.query)
+    {
+      BooksAPI.search(this.state.query,10)
+      .then(searchResults => { 
+        searchResults.shelf="None",  
+        this.setState({
+          showingBooks:searchResults
+        })
+      })
+    } 
+   }
   render() {
     
-    if (this.state.query)
-      {
-       
-        BooksAPI.search(this.state.query,10)
-        .then(searchResults => {   
-          this.setState({
-            showingBooks:searchResults
-          })
-        })
-      } 
+    
      
     return (
       
@@ -86,7 +85,8 @@ class BooksApp extends React.Component {
                 
                 <input type="text" 
                        value={this.state.query} 
-                       onChange={(event)=>this.updateQuery(event.target.value)}
+                       //onChange={(event)=>this.updateQuery(event.target.value)}
+                       onChange={(event)=>this.searchBook(event.target.value)}
                        placeholder="Search by title or author"/>
                        
               </div>
