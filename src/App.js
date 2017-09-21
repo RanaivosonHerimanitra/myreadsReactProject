@@ -52,21 +52,29 @@ class BooksApp extends React.Component {
     }
   }
 
-   updateQuery = (query)=> {
-     this.setState({query:query})
-   }
-   /* search a book **/
+  
+   /* search for a book **/
    searchBook = (query)=> {
-    this.state.query=query
-    if (this.state.query)
-    {
+     //update query state whenever It exists
+     if (query) {
+      this.setState({
+        query:query
+      },
+      //then begins search after update of query state
       BooksAPI.search(this.state.query,10)
       .then(searchResults => { 
-        searchResults.shelf="None",  
+        console.log(searchResults),  
         this.setState({
           showingBooks:searchResults
         })
       })
+    )
+      
+     }
+    //this.state.query=query
+    if (this.state.query)
+    {
+      
     } 
    }
   render() {
