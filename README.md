@@ -19,10 +19,6 @@ One single `component` (`ListBooks`) cloned into 03 to handle 03 shelves (read, 
 
 * Both Chrome and Firefox compatible
 
-* One unique function to move from shelf to an another and to create shelf on books that have been found
+* One unique function to move from shelf to an another and to create shelf on books that have been found. Consistency between shelves both on main and search pages.
 
 * Shelf migration is persistent after page refresh
-
-* Uncounter some errors when creating shelf sometimes:
-
-![](./error.png)
