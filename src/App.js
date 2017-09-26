@@ -4,6 +4,7 @@ import ListBooks from './ListBooks'
 import {Route,Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooksFound from './ListBooksFound'
+import debounce from 'lodash/debounce'
 
 class BooksApp extends React.Component {
  
@@ -60,12 +61,10 @@ class BooksApp extends React.Component {
                   } )
      )
     }
-    
    }
+   
+  
   render() {
-    
-    
-     
     return (
       
       <div className="app">
@@ -79,7 +78,7 @@ class BooksApp extends React.Component {
                 <input type="text" 
                        value={this.state.query} 
                       
-                       onChange={(event)=>this.searchBook(event.target.value)}
+                       onChange={(event)=>debounce(this.searchBook(event.target.value),1000)}
                        placeholder="Search by title or author"/>
                        
               </div>
