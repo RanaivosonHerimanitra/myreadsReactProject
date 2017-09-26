@@ -17,22 +17,7 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then(books => this.setState({books}));
   }
-  /** create a shelf for a fetched book */
-  createShelf = (book,shelf)=> {
-    //update the book in question 
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf=shelf
-      //remaining books
-      let books = this.state.books.filter(x => x.id !== book.id) ; 
-     //add updated book to remaining books 
-     books.push(book[0])  ;
-     //update the state:
-     this.setState({
-        books:books
-     })
-    })
-    
-}
+  
  
   /**adding a book to a specific shelf */
   addBook = (book, shelf) => {   
@@ -59,20 +44,21 @@ class BooksApp extends React.Component {
         //then begins search after update of query state
         //callback of setState
          ()=> BooksAPI.search(this.state.query,10)
-                 .then( searchResults => { 
-                        searchResults.map( (book)=>book.shelf="none");
-                         //console.log(searchResults)
-                         this.setState({showingBooks:searchResults})
-                 
-                         
-                      } )
-                      
-                     
-                     
-
+                 .then( searchResults => 
+                  { 
+                        searchResults.map( (book)=>
+                        {
+                          //handle incoherent book shelf
+                          //Both on search and main page
+                          let shelvedBook = this.state.books.find((b) => b.id === book.id);
+                          if (shelvedBook) {
+                            book.shelf = shelvedBook.shelf;
+                          } else {
+                            book.shelf="none";
+                          } });
+                         this.setState({showingBooks:searchResults})  
+                  } )
      )
-     
-      
     }
     
    }
