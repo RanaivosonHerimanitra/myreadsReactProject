@@ -76,8 +76,7 @@ class BooksApp extends React.Component {
               <div className="search-books-input-wrapper">
                 
                 <input type="text" 
-                       value={this.state.query} 
-                      
+                       value={this.state.query}    
                        onChange={(event)=>debounce(this.searchBook(event.target.value),1000)}
                        placeholder="Search by title or author"/>
                        

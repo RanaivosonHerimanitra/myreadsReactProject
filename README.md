@@ -1,19 +1,22 @@
 # myreadsReactProject
 A react project that demonstrates fundamental building blocks of react ecosystem (component, props, states, router).
 
-## Dependencies intallation
+## Dependencies installation
 
-`$ npm install -g react-router-dom`
+`$ npm install `
 
 ## Start playing with the App:
 
-`$ yarn start` 
+`$ yarn start`
 
+## Look like :
+
+![alt text](snap_appli.png)
 
 
 ## Approach:
 
-One single `component` (`ListBooks`) cloned into 03 to handle 03 shelves (read, want to read, currently reading). 
+One single `component` (`ListBooks`) cloned into 03 to handle 03 shelves (read, want to read, currently reading).
 
  ## Notice:
 
